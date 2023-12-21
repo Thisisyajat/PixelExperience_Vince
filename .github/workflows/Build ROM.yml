@@ -58,5 +58,5 @@ jobs:
       - name: Initialize the PixelExperience source repository
         run: |
           cd ~/android/pe
-          repo init -u https://github.com/PixelExperience/manifest -b thirteen-plus
+          repo init -u https://github.com/PixelExperience/manifest -b thirteen
           repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
