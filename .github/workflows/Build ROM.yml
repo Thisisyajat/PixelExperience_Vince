@@ -25,7 +25,7 @@ jobs:
           mkdir -p ~/platform-tools
           cd ~/platform-tools
           curl -o https://dl.google.com/android/repository/platform-tools-latest-linux.zip
-          unzip /platform-tools-latest-linux.zip -d ~
+          unzip ~/platform-tools/platform-tools-latest-linux.zip -d ~
       
       - name: Add platform-tools to path
         run: |
