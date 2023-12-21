@@ -1,0 +1,55 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - name: Download platform-tools
+        run: |
+          curl https://dl.google.com/android/repository/platform-tools-latest-linux.zip > platform-tools-latest-linux.zip
+          unzip platform-tools-latest-linux.zip -d ~
+      
+      - name: Add platform-tools to path
+        run: |
+          echo "$HOME/platform-tools" >> $GITHUB_PATH
+
+      # Runs a set of commands using the runners shell
+      - name: Install git and run config script 
+        run: |
+          sudo apt install git
+          cd ~/
+          git clone https://github.com/akhilnarang/scripts
+          cd scripts
+          ./setup/android_build_env.sh
+
+      - name: Create directories and install repo command
+        run: |
+          mkdir -p ~/bin
+          mkdir -p ~/android/pe
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          chmod a+x ~/bin/repo
+          echo "$HOME/bin" >> #GITHUB_PATH
+          git config --global user.email "yajatgupta@outlook.com "
+          git config --global user.name "Yajat Gupta"
+
+      - name: Initialize the PixelExperience source repository
+        run: |
+          cd ~/android/pe
+          repo init -u https://github.com/PixelExperience/manifest -b thirteen-plus
+          repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
