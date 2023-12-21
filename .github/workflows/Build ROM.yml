@@ -44,8 +44,14 @@ jobs:
         run: |
           mkdir -p ~/bin
           mkdir -p ~/android/pe
+
+      - name: Curl repo command
+        run: |
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
           chmod a+x ~/bin/repo
+
+      - name: Next Task
+        run: |
           echo "$HOME/bin" >> #GITHUB_PATH
           git config --global user.email "yajatgupta@outlook.com "
           git config --global user.name "Yajat Gupta"
