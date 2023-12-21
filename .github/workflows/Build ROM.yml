@@ -22,7 +22,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Download platform-tools
         run: |
-          curl https://dl.google.com/android/repository/platform-tools-latest-linux.zip > platform-tools-latest-linux.zip
+          mkdir -p ~/platform-tools
+          cd ~/platform-tools
+          curl -o https://dl.google.com/android/repository/platform-tools-latest-linux.zip
           unzip /platform-tools-latest-linux.zip -d ~
       
       - name: Add platform-tools to path
