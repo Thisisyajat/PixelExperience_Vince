@@ -52,7 +52,6 @@ jobs:
 
       - name: Next Task
         run: |
-          echo "$HOME/bin" >> #GITHUB_PATH
           git config --global user.email "yajatgupta@outlook.com "
           git config --global user.name "Yajat Gupta"
 
