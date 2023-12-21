@@ -23,7 +23,7 @@ jobs:
       - name: Download platform-tools
         run: |
           curl https://dl.google.com/android/repository/platform-tools-latest-linux.zip > platform-tools-latest-linux.zip
-          unzip platform-tools-latest-linux.zip -d ~
+          unzip /platform-tools-latest-linux.zip -d ~
       
       - name: Add platform-tools to path
         run: |
